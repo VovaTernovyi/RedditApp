@@ -1,7 +1,10 @@
 package com.ternovyi.redditapp
 
 import android.app.Application
-import com.facebook.stetho.Stetho
+import com.ternovyi.redditapp.di.modules.KoinApiModule
+import com.ternovyi.redditapp.di.modules.KoinArchitectureComponentViewModels
+import com.ternovyi.redditapp.di.modules.KoinOtherModule
+import com.ternovyi.redditapp.di.modules.KoinRepositoriesModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -17,7 +20,10 @@ class RedditApplication : Application() {
         startKoin {
             androidContext(this@RedditApplication)
             modules(
-
+                KoinApiModule,
+                KoinRepositoriesModule,
+                KoinArchitectureComponentViewModels,
+                KoinOtherModule
             )
         }
     }
