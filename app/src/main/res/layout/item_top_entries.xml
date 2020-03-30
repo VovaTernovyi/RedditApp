@@ -1,11 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <variable
+            name="titleString"
+            type="String" />
+
+        <variable
+            name="avatarUrl"
+            type="String" />
+
+        <variable
+            name="authorString"
+            type="String" />
+
+        <variable
+            name="subredditString"
+            type="String" />
+
+        <variable
+            name="datePosted"
+            type="String" />
+
+        <variable
+            name="ratingString"
+            type="String" />
+
+        <variable
+            name="numberOfCommentsString"
+            type="String" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_margin_8dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/base_margin_16dp"
+                android:paddingEnd="@dimen/base_margin_16dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_18sp"
+                android:textStyle="bold"
+                android:text="@{titleString}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin_16dp"
+                android:textColor="@color/colorBlack"
+                android:text="@{authorString}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="Author" />
+
+            <TextView
+                android:id="@+id/subreddit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin_16dp"
+                android:textColor="@color/colorBlack"
+                android:text="@{subredditString}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/author"
+                tools:text="Subreddit" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin_16dp"
+                android:textColor="@color/colorBlack"
+                android:text="@{datePosted}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/subreddit"
+                tools:text="Date" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin_16dp"
+                android:textColor="@color/colorBlack"
+                android:text="@{ratingString}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                tools:text="Rating" />
+
+            <TextView
+                android:id="@+id/number_of_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/base_margin_16dp"
+                android:textColor="@color/colorBlack"
+                android:text="@{numberOfCommentsString}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rating"
+                tools:text="1000" />
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/base_margin_16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/number_of_comments" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

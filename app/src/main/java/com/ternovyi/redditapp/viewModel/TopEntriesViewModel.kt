@@ -8,4 +8,5 @@ class TopEntriesViewModel(
     private val repository: TopRepository
 ) : ViewModel(), KoinComponent {
 
+    val topEntriesLiveData = repository.getTopEntries()
 }

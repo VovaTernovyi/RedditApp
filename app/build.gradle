@@ -22,12 +22,12 @@ android {
             minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_URL", '"https:reddit.com/"')
+            buildConfigField("String", "API_URL", '"https://www.reddit.com/"')
         }
         debug {
             minifyEnabled false
             debuggable true
-            buildConfigField("String", "API_URL", '"https:reddit.com/"')
+            buildConfigField("String", "API_URL", '"https://www.reddit.com/"')
         }
     }
     flavorDimensions 'tier'

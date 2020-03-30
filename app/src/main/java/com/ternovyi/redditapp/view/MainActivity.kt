@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         init()
         setupView()
+        setupInitialFragment()
     }
 
     override fun onDestroy() {
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
-    private fun setupInitialFragment(isLoggedIn: Boolean) {
+    private fun setupInitialFragment() {
         val fragment = RedditTopFragment.newInstance()
         switchFragment(fragment)
     }

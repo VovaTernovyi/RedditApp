@@ -1,24 +1,24 @@
 package com.ternovyi.redditapp.model.repository
 
 import androidx.lifecycle.liveData
-import com.ternovyi.redditapp.extension.LiveResourceList
+import com.ternovyi.redditapp.extension.LiveResource
 import com.ternovyi.redditapp.extension.onError
-import com.ternovyi.redditapp.model.container.Entries
 import com.ternovyi.redditapp.model.container.Resource
 import com.ternovyi.redditapp.model.network.contracts.TopContract
+import com.ternovyi.redditapp.model.container.RedditNews
 
 interface TopRepository {
-    fun getTopEntries(): LiveResourceList<Entries>
+    fun getTopEntries(): LiveResource<RedditNews>
 }
 
 class TopRepositoryImpl(
     private val contract: TopContract
 ) : TopRepository {
 
-    override fun getTopEntries(): LiveResourceList<Entries> = liveData {
+    override fun getTopEntries(): LiveResource<RedditNews> = liveData {
         kotlin.runCatching {
             emit(Resource.loading())
-            contract.getTop(limit = 10)
+            contract.getTop(after = "", limit = 10)
         }.onSuccess {
             emit(Resource.success(it))
         }.onError {
