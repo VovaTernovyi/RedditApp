@@ -11,6 +11,7 @@ import com.ternovyi.redditapp.databinding.FragmentRedditTopBinding
 import com.ternovyi.redditapp.extension.onError
 import com.ternovyi.redditapp.extension.onSuccess
 import com.ternovyi.redditapp.view.adapter.TopEntriesAdapter
+import com.ternovyi.redditapp.view.adapter.TopEntriesPagingAdapter
 import com.ternovyi.redditapp.viewModel.TopEntriesViewModel
 import kotlinx.android.synthetic.main.fragment_reddit_top.*
 import org.koin.android.ext.android.inject
@@ -22,6 +23,7 @@ class RedditTopFragment : BaseFragment() {
     private val viewModel: TopEntriesViewModel by viewModel()
 
     private val topEntriesAdapter: TopEntriesAdapter by inject()
+    private val topAdapter: TopEntriesPagingAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,7 @@ class RedditTopFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         top_recycler_view.apply {
-            adapter = topEntriesAdapter
+            adapter = topAdapter
         }
         setupObservers()
     }
@@ -47,6 +49,10 @@ class RedditTopFragment : BaseFragment() {
             }.onError { _, _ ->
                 showDefaultErrorSnackbar()
             }
+        })
+
+        topEntriesPagedList.observe(viewLifecycleOwner, Observer {
+            topAdapter.submitList(it)
         })
     }
 

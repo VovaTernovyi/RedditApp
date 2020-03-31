@@ -28,8 +28,8 @@ class TopEntriesAdapter : RecyclerView.Adapter<TopEntriesAdapter.TopEntriesViewH
                 avatarUrl = data.thumbnail
                 authorString = data.author
                 subredditString = data.subReddit
-                datePosted = data.created.toString()
-                ratingString = data.numComments.toString()
+                datePosted = data.created
+                ratingString = data.score.toString()
                 numberOfCommentsString = data.numComments.toString()
             }
         }

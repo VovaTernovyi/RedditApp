@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="base_margin_4dp">4dp</dimen>
     <dimen name="base_margin_8dp">8dp</dimen>
     <dimen name="base_margin_12dp">12dp</dimen>
     <dimen name="base_margin_16dp">16dp</dimen>
@@ -12,4 +13,6 @@
     <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="text_size_18sp">18sp</dimen>
     <dimen name="text_size_22sp">22sp</dimen>
+
+    <dimen name="card_view_corner_radius">16dp</dimen>
 </resources>

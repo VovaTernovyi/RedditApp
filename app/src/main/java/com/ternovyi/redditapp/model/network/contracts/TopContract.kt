@@ -12,4 +12,10 @@ interface TopContract {
         @Query("after") after: String,
         @Query("limit") limit: Int
     ): RedditNews
+
+    @GET(ApiRest.TOP)
+    suspend fun getTopEntries(
+        @Query("after") after: String,
+        @Query("limit") limit: Int
+    ): RedditNews
 }

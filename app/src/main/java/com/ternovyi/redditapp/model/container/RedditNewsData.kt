@@ -9,6 +9,8 @@ data class RedditNewsData(
     val title: String,
     @SerializedName("num_comments")
     val numComments: Int,
+    @SerializedName("score")
+    val score: Int,
     @SerializedName("created")
     val created: Long,
     @SerializedName("thumbnail")
