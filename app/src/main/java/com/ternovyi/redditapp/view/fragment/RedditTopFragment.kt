@@ -1,10 +1,12 @@
 package com.ternovyi.redditapp.view.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Observer
 import com.ternovyi.redditapp.R
 import com.ternovyi.redditapp.databinding.FragmentRedditTopBinding
@@ -16,6 +18,7 @@ import com.ternovyi.redditapp.viewModel.TopEntriesViewModel
 import kotlinx.android.synthetic.main.fragment_reddit_top.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class RedditTopFragment : BaseFragment() {
 
@@ -58,6 +61,20 @@ class RedditTopFragment : BaseFragment() {
 
     private fun setupView() = binding.apply {
         setToolbarTitle(R.string.app_name)
+        topAdapter.onTopEntriesClickListener = {
+            openUrl(it)
+        }
+    }
+
+    private fun openUrl(url: String) {
+        val customTabsIntent: CustomTabsIntent = CustomTabsIntent.Builder()
+            .addDefaultShareMenuItem()
+            .setToolbarColor(
+                this.resources.getColor(R.color.colorPrimary)
+            )
+            .setShowTitle(true)
+            .build()
+        customTabsIntent.launchUrl(context, Uri.parse(url))
     }
 
     companion object {

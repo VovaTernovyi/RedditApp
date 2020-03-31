@@ -10,6 +10,8 @@ import com.ternovyi.redditapp.model.container.RedditChildren
 class TopEntriesPagingAdapter :
     PagedListAdapter<RedditChildren, TopEntriesAdapter.TopEntriesViewHolder>(ENTRIES_COMPARATOR) {
 
+    var onTopEntriesClickListener: ((url: String) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,15 +25,18 @@ class TopEntriesPagingAdapter :
 
     override fun onBindViewHolder(holder: TopEntriesAdapter.TopEntriesViewHolder, position: Int) {
         val item = getItem(position)
-        item?.let {
+        item?.let { post ->
             holder.binding.run {
-                titleString = it.data.title
-                avatarUrl = it.data.thumbnail
-                authorString = it.data.author
-                subredditString = it.data.subReddit
-                datePosted = it.data.created
-                ratingString = it.data.score.toString()
-                numberOfCommentsString = it.data.numComments.toString()
+                titleString = post.data.title
+                avatarUrl = post.data.thumbnail
+                authorString = post.data.author
+                subredditString = post.data.subReddit
+                datePosted = post.data.created
+                ratingString = post.data.score.toString()
+                numberOfCommentsString = post.data.numComments.toString()
+                root.setOnClickListener {
+                    onTopEntriesClickListener?.invoke(post.data.url)
+                }
             }
         }
     }
