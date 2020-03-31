@@ -1,7 +1,6 @@
 package com.ternovyi.redditapp.extension
 
 import android.content.res.Resources
-import com.ternovyi.redditapp.model.network.ApiRest
 import kotlinx.coroutines.CancellationException
 import retrofit2.HttpException
 
@@ -17,9 +16,3 @@ fun convertDpToPixel(dp: Float): Float {
     val px = dp * (metrics.densityDpi / 160f)
     return Math.round(px).toFloat()
 }
-
-fun String.createImageUrl(width: Int, height: Int) =
-    "${getBaseImageUrl()}${ApiRest.UPLOADS}/$this?width=$width&height=$height"
-
-private fun getBaseImageUrl() =
-    ApiRest.API_BASE_URL.substring(0, ApiRest.API_BASE_URL.indexOf("api"))

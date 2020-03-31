@@ -15,8 +15,6 @@ class TopEntriesViewModel(
     private val repository: TopRepository
 ) : ViewModel(), KoinComponent {
 
-    val topEntriesLiveData = repository.getTopEntries(after = "", limit = 10)
-
     var topEntriesPagedList: LiveData<PagedList<RedditChildren>>
     private var liveDataSource: LiveData<TopEntriesDataSource>
 
@@ -29,7 +27,6 @@ class TopEntriesViewModel(
             .build()
         topEntriesPagedList = LivePagedListBuilder(itemDataSourceFactory, config)
             .build()
-
     }
 
 }

@@ -4,18 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.ternovyi.redditapp.databinding.ItemTopEntriesBinding
 import com.ternovyi.redditapp.model.container.RedditChildren
 
 class TopEntriesPagingAdapter :
-    PagedListAdapter<RedditChildren, TopEntriesAdapter.TopEntriesViewHolder>(ENTRIES_COMPARATOR) {
+    PagedListAdapter<RedditChildren, TopEntriesPagingAdapter.TopEntriesViewHolder>(ENTRIES_COMPARATOR) {
 
     var onTopEntriesClickListener: ((url: String) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TopEntriesAdapter.TopEntriesViewHolder = TopEntriesAdapter.TopEntriesViewHolder(
+    ): TopEntriesViewHolder = TopEntriesViewHolder(
         ItemTopEntriesBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -23,7 +24,7 @@ class TopEntriesPagingAdapter :
         )
     )
 
-    override fun onBindViewHolder(holder: TopEntriesAdapter.TopEntriesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopEntriesViewHolder, position: Int) {
         val item = getItem(position)
         item?.let { post ->
             holder.binding.run {
@@ -41,8 +42,13 @@ class TopEntriesPagingAdapter :
         }
     }
 
+    class TopEntriesViewHolder(
+        val binding: ItemTopEntriesBinding
+    ) : RecyclerView.ViewHolder(binding.root)
+
     companion object {
         private val ENTRIES_COMPARATOR = object : DiffUtil.ItemCallback<RedditChildren>() {
+
             override fun areItemsTheSame(
                 oldItem: RedditChildren,
                 newItem: RedditChildren
